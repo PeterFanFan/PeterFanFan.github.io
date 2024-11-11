@@ -1,11 +1,218 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        <div id="test">
-            Hello PeterFan. <br />This is my first website.
-        </div>
-    </body>
+<!DOCTYPE HTML>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Guanwen Feng</title>
+  
+  <meta name="author" content="Guanwen Feng">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
+
+<body>
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr style="padding:0px">
+      <td style="padding:0px">
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr style="padding:0px">
+            <td style="padding:2.5%;width:63%;vertical-align:middle">
+              <p style="text-align:center">
+                <name>Guanwen Feng</name>
+              </p> 
+              <p>I am a third-year PhD candidate at 
+                <a href="https://www.xidian.edu.cn/">Xidian University of China</a>,
+                 supervised by <a href="https://faculty.xidian.edu.cn/MQG1/zh_CN/index.htm">Prof. Qiguang Miao</a> from Xidian University of China and <a href="https://cmpun.github.io/">Prof. Chi-Man Pun</a> from University of Macau.
+              </p>
+              <p>
+                Welcome to exchange academic and life with me.
+              </p>               
+              <p>
+                My areas of focus include 2D/3D Talking Head Generation, Sign Language Generation and Other AIGC Applications.
+              </p>              
+              <p style="text-align:center">
+                <a href="mailto:gwfeng_1@stu.xidian.edu.cn">Email</a> &nbsp/&nbsp
+                <a href="https://github.com/PeterFanFan">Github</a>  
+
+              </p>
+            </td>
+            <td style="padding:2.5%;width:40%;max-width:40%">
+              <a href="images/gwfeng.jpg"><img style="width:100%;max-width:100%" alt="profile photo" src="images/gwfeng.jpg" class="hoverZoomLink"></a>
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Research</heading>
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+				
+
+
+          
+
+
+
+<tr onmouseout="lestalker_stop()" onmouseover="lestalker_start()" >
+  <td style="padding:20px;width:25%;vertical-align:middle">
+    <div class="two" id="lestalker_image" style="display: inline;"> 
+      <video  width="320" height="180" muted autoplay loop>
+      <source src="images/lestalker/lestalker.mp4" alt="lestalker mp4" width="320" height="170" type="video/mp4">
+      </video>
+    </div>
+      <img src='images/lestalker/lestalker.png' alt="lestalker" width="320" height="170">
+    </div>
+    <script type="text/javascript">
+      function lestalker_start() {
+        document.getElementById('lestalker_image').style.opacity = "1";
+      }
+
+      function lestalker_stop() {
+        document.getElementById('lestalker_image').style.opacity = "0";
+      }
+      lestalker_stop()
+    </script>
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="./lestalker">
+      <papertitle>[Arxiv 2024] LES-Talker: Fine-Grained Emotion Editing for Talking Head Generation in Linear Emotion Space</papertitle>
+    </a>
+    <br>
+    <strong>Guanwen Feng</strong>,
+    <strong>Zhihao Qian</strong>,
+    <strong>Yunan Li</strong>,
+    <strong>Siyu Jin</strong>,
+    <strong>Qiguang Miao</strong>,
+    <strong>Chi-Man Pun</strong>,
+    <br>
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0950705124000224">Project</a>
+  
+<!--     <a href="https://www.sciencedirect.com/science/article/abs/pii/S0950705124000224">KBS</a> -->
+  
+<!--     <a href="https://github.com/Psychic-DL/DiffTAD">Code</a> -->
+    <p></p>
+    <p>
+      We propose a novel one-shot talking head generation model with high interpretability, designed to achieve fine-grained emotion editing across emotion types, levels, and facial units.
+    </p>
+  </td>
+
+
+
+
+<tr onmouseout="difftad_stop()" onmouseover="difftad_start()" >
+  <td style="padding:20px;width:25%;vertical-align:middle">
+    <div class="two" id="difftad_image" style="display: inline;"> 
+      <video  width="320" height="180" muted autoplay loop>
+      <source src="images/difftad/difftad.mp4" alt="difftad mp4" width="320" height="180" type="video/mp4">
+      </video>
+    </div>
+      <img src='images/difftad/difftad.png' alt="difftad" width="320" height="120">
+    </div>
+    <script type="text/javascript">
+      function difftad_start() {
+        document.getElementById('difftad_image').style.opacity = "1";
+      }
+
+      function difftad_stop() {
+        document.getElementById('difftad_image').style.opacity = "0";
+      }
+      difftad_stop()
+    </script>
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="./difftad">
+      <papertitle>[KBS 2024] DiffTAD: Denoising diffusion probabilistic models for vehicle trajectory anomaly detection</papertitle>
+    </a>
+    <br>
+    <strong>Chaoneng Li</strong>,
+    <strong>Guanwen Feng</strong>,
+    <strong>Yunan Li</strong>,
+    <strong>Ruyi Liu</strong>,
+    <strong>Qiguang Miao</strong>,
+    <strong>Liang Chang</strong>,
+    <br>
+    
+    <a href="https://www.sciencedirect.com/science/article/abs/pii/S0950705124000224">KBS</a>
+  
+    <a href="https://github.com/Psychic-DL/DiffTAD">Code</a>
+    <p></p>
+    <p>
+      We propose a denoising-diffusion-based vehicle trajectory anomaly detection pipeline, called DiffTAD.
+    </p>
+  </td>
+
+
+
+</tr>
+
+
+
+<tr onmouseout="meacp_stop()" onmouseover="meacp_start()" >
+  <td style="padding:20px;width:25%;vertical-align:middle">
+    <div class="two" id="meacp_image" style="display: inline;"> 
+    </div>
+      <img src='images/meacp/meacp.jpg' alt="meacp" width="320" height="480">
+    </div>
+    <script type="text/javascript">
+      function selftalk_start() {
+        document.getElementById('meacp').style.opacity = "1";
+      }
+
+      function selftalk_stop() {
+        document.getElementById('meacp').style.opacity = "0";
+      }
+      meacp_stop()
+    </script>
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="./meacp">
+      <papertitle>[Computers in Biology and Medicine 2022]ME-ACP: Multi-view Neural Networks with Ensemble Model for identification of Anticancer Peptides</papertitle>
+    </a>
+    <br>
+    <strong>Guanwen Feng</strong>,
+    <strong>Hang Yao</strong>,
+    <strong>Chaoneng Li</strong>,
+    <strong>Ruyi Liu</strong>,
+    <strong>Rungeng Huang</strong>,
+    <strong>Xiaopeng Fan</strong>,
+    <strong>Ruiquan Ge</strong>,
+    <strong>Qiguang Miao</strong>,
+    <br>
+    
+    <a href="./meacp">Project</a>
+    /
+    <a href="https://www.biorxiv.org/content/10.1101/2021.11.22.469543v2.full.pdf">arXiv</a>
+    /
+    <a href="https://github.com/PeterFanFan/ME-ACP">Code</a>
+    <p></p>
+    <p>
+    We propose An Ensemble Model for Identification of Anticancer Peptides.
+    </p>
+  </td>
+</tr>
+
+        </tbody></table>
+
+					
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:0px">
+              <br>
+              <p style="text-align:right;font-size:small;">
+                Last updated: Sep. 2024
+                <br>
+                Web page design credit to <a href="https://jonbarron.info" style="font-size: 14px">Jon Barron</a>
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+      </td>
+    </tr>
+  </table>
+</body>
+
 </html>
