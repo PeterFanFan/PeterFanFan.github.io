@@ -100,7 +100,54 @@
   </td>
 
 
+<tr onmouseout="emospeaker_stop()" onmouseover="emospeaker_start()" >
+  <td style="padding:20px;width:25%;vertical-align:middle">
+<!--     <div class="two" id="emospeaker_image" style="display: inline;"> 
+      <video  width="320" height="180" muted autoplay loop>
+      <source src="lestalker/static/video/video1.mp4" alt="lestalker mp4" width="320" height="170" type="video/mp4">
+      </video>
+    </div> -->
+      <img src='images/emospeaker/emospeaker.png' alt="emospeaker" width="320" height="170">
+    </div>
+    <script type="text/javascript">
+      function emospeaker_start() {
+        document.getElementById('emospeaker_image').style.opacity = "1";
+      }
 
+      function lestalker_stop() {
+        document.getElementById('emospeaker_image').style.opacity = "0";
+      }
+      emospeaker_stop()
+    </script>
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="./emospeaker">
+      <papertitle>[Arxiv 2024] EmoSpeaker: One-shot Fine-grained Emotion-Controlled Talking Face Generation </papertitle>
+    </a>
+    <br>
+    <strong>Guanwen Feng</strong>,
+    <strong>Haoran Cheng</strong>,
+    <strong>Yunan Li</strong>,
+    <strong>Zhiyuan Ma</strong>,
+     <strong>Chaoneng Li</strong>,
+    <strong>Zhihao Qian</strong>,
+    <strong>Qiguang Miao</strong>,
+    <strong>Chi-Man Pun</strong>,
+    <br>
+        <a href="https://peterfanfan.github.io/EmoSpeaker/">Project</a>  /
+  
+     <a href="https://arxiv.org/pdf/2402.01422">Arxiv</a> 
+  
+<!--     <a href="https://github.com/Psychic-DL/DiffTAD">Code</a> -->
+    <p></p>
+    <p>
+      We propose a novel one-shot talking head generation model with high interpretability, designed to achieve fine-grained emotion editing across emotion types, levels, and facial units.
+    </p>
+  </td>
+
+
+
+	    
 
 <tr onmouseout="difftad_stop()" onmouseover="difftad_start()" >
   <td style="padding:20px;width:25%;vertical-align:middle">
