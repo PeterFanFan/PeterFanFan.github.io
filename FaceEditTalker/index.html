@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaceEditTalker: Interactive Talking Head Generation with Facial Attribute Editing</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="title-container">
+            <h1>FaceEditTalker: Interactive Talking Head Generation with Facial Attribute Editing</h1>
+            <div class="authors">
+                <p>Guanwen Feng<sup>1,2,3</sup>, Zhiyuan Ma<sup>1,2,3</sup>, Yunan Li<sup>1,2,3</sup>, Junwei Jing<sup>3</sup>, Jiahao Yang<sup>3</sup>, Qiguang Miao<sup>1,2,3</sup></p>
+                <p class="affiliations">
+                    <sup>1</sup>Xi’an Key Laboratory of Big Data and Intelligent Vision, Xidian University, 
+                    <sup>2</sup>China and Key Laboratory of Collaborative lntelligence Systems, Ministry of Education, Xidian University,
+                    <sup>3</sup>School of Computer Science and Technology, Xidian University</p>
+            </div>
+        </div>
+        <div class="buttons-container">
+            <a href="#" class="button paper-button"><i class="fas fa-file-alt"></i> Paper</a>
+            <a href="#" class="button code-button"><i class="fas fa-code"></i> Code</a>
+            <!-- <a href="#" class="button project-button"><i class="fas fa-home"></i> Project Page</a> -->
+        </div>
+    </header>
+
+    <section id="abstract">
+        <h2>Abstract</h2>
+        <div class="content-box">
+            <p>Recent advances in audio-driven talking head generation have achieved impressive results in lip synchronization and emotional expression. However, they largely overlook the crucial task of facial attribute editing. This capability is crucial for achieving deep personalization and expanding the range of practical applications, including user-tailored digital avatars, engaging online education content, and brand-specific digital customer service. In these key domains, the flexible adjustment of visual attributes—such as hairstyle, accessories, and subtle facial features—is essential for aligning with user preferences, reflecting diverse brand identities, and adapting to varying contextual demands. In this paper, we present FaceEditTalker, a unified framework that enables controllable facial attribute manipulation while generating high-quality, audio-synchronized talking head videos. Our method consists of two key components: an image feature space editing module, which extracts semantic and detail features and allows flexible control over attributes like expression, hairstyle, and accessories; and an audio-driven video generation module, which fuses these edited features with audio-guided facial landmarks to drive a diffusion-based generator. This design ensures temporal coherence, visual fidelity, and identity preservation across frames. Extensive experiments on public datasets demonstrate that our method outperforms state-of-the-art approaches in lip-sync accuracy, video quality, and attribute controllability.</p>
+        </div>
+    </section>
+
+    <section id="header-image">
+        <h2>The flowchart of EditFaceTalker</h2>
+        <div class="content-box">
+            <div class="overview-image">
+                <img src="images/header.png" alt="FaceEditTalker Pipeline Illustration">
+                <p class="caption">By providing a single reference image, audio input, and optional facial attribute input, our method generates high-quality, facially editable speaker videos by predicting facial landmark maps and performing linear edits on the feature semantic encoding of the image, combined with a diffusion model. This method demonstrates good generalization ability and achieves high lip-sync accuracy. In this figure, the image input used is a portrait from outside the dataset.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="overview">
+        <h2>The overview of FaceEditTalker</h2>
+        <div class="content-box">
+            <div class="overview-image">
+                <img src="images/overview.png" alt="FaceEditTalker Technical Architecture Diagram">
+                <p class="caption">The
+                    framework consists of two main modules: (a) Image Feature Space Editing Module, which extracts
+                    editable semantic and stochastic codes from the reference image using a dual-layer latent encoding
+                    structure. Fine-grained attribute manipulation is enabled through optional spatial editing on the
+                    semantic codes. (b) Audio-Driven Video Generation Module, which leverages the audio input to
+                    infer driving landmarks. During the diffusion process, the stochastic codes guide dynamic generation,
+                    while the semantic codes serve as conditional inputs to ensure attribute consistency and visual fidelity
+                    throughout the video.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison">
+        <h2>Quality Comparison</h2>
+        <div class="content-box">
+            <p class="section-intro">We compared FaceEditTalker with several state-of-the-art methods, including Wav2Lip which primarily focuses on lip synchronization, SadTalker based on 3D facial modeling, and diffusion model-based generation methods such as DiffTalk, EchoMimic, and Hallo. Below shows the quality comparison results in regular generation mode, without involving attribute editing functionality.</p>
+            
+            <div class="carousel-container">
+                <div class="carousel-videos">
+                    <div class="carousel-item">
+                        <video controls width="1920" height="1080">
+                            <source src="videos/comparative_video/comparison_video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- <p class="caption">Dataset Video Comparison</p> -->
+                    </div>
+                    <div class="carousel-item">
+                        <video controls width="1440" height="1080">
+                            <source src="videos/comparative_video/dataset_external_comparison_video_1.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- <p class="caption">External Comparison Video 1</p> -->
+                    </div>
+                    <div class="carousel-item">
+                        <video controls width="1440" height="1080">
+                            <source src="videos/comparative_video/dataset_external_comparison_video_2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- <p class="caption">External Comparison Video 2</p> -->
+                    </div>
+                    <div class="carousel-item">
+                        <video controls width="1440" height="1080">
+                            <source src="videos/comparative_video/dataset_external_comparison_video_3.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- <p class="caption">External Comparison Video 3</p> -->
+                    </div>
+                    <div class="carousel-item">
+                        <video controls width="1440" height="1080">
+                            <source src="videos/comparative_video/dataset_external_comparison_video_4.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <!-- <p class="caption">External Comparison Video 4</p> -->
+                    </div>
+                </div>
+                <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
+                <p class="carousel-hint">Slide left or right to view more comparison videos</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="emotional-results">
+        <h2>Attribute Editing Generation</h2>
+        <div class="content-box">
+            <p class="section-intro">FaceEditTalker can generate talking head videos with different facial attributes. Below shows the results generated by adjusting different facial attribute parameters under the same audio input and identity.</p>
+            
+            <div class="character-selector">
+                <button class="character-button active" data-character="Chris_Hemsworth_019">Chris Hemsworth</button>
+                <button class="character-button" data-character="yangziqiong_033">Michelle Yeoh</button>
+                <!-- <button class="character-button" data-character="zhoujielun_lyl">Jay Chou</button> -->
+                <button class="character-button" data-character="lyl_lyl">Li Yunlong</button>
+                <button class="character-button" data-character="Jackie_Chan_Jackie_Chan">Jackie Chan</button>
+                <button class="character-button" data-character="zhoujielun_019">Jay Chou (English)</button>
+                <button class="character-button" data-character="zjl_zjl">Jay Chou</button>
+            </div>
+            <div id="jay-chou-notice" style="display: none; margin-top: 10px; color: #666; font-style: italic; text-align: center;">
+                Due to the presence of background sound in Jay Chou's original speech videos, the lip-sync accuracy of the driven videos may be affected by audio interference.
+            </div>
+            
+            <div class="emotion-grid">
+                <div class="emotion-item">
+                    <h3>5 O'Clock Shadow</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_5_o_Clock_Shadow.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Arched Eyebrows</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Arched_Eyebrows.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Attractive</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Attractive.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Bags Under Eyes</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Bags_Under_Eyes.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Bald</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Bald.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Bangs</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Bangs.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Big Lips</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Big_Lips.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Big Nose</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Big_Nose.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Black Hair</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Black_Hair.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Blond Hair</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Blond_Hair.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Blurry</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Blurry.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Brown Hair</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Brown_Hair.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Bushy Eyebrows</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Bushy_Eyebrows.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Chubby</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Chubby.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Double Chin</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Double_Chin.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Eyeglasses</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Eyeglasses.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Goatee</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Goatee.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Gray Hair</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Gray_Hair.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Heavy Makeup</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Heavy_Makeup.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>High Cheekbones</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_High_Cheekbones.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Male</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Male.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Mouth Slightly Open</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Mouth_Slightly_Open.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Mustache</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Mustache.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Narrow Eyes</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Narrow_Eyes.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>No Beard</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_No_Beard.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Oval Face</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Oval_Face.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Pale Skin</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Pale_Skin.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Pointy Nose</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Pointy_Nose.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Receding Hairline</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Receding_Hairline.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Rosy Cheeks</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Rosy_Cheeks.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Sideburns</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Sideburns.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Smiling</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Smiling.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Straight Hair</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Straight_Hair.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Wavy Hair</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Wavy_Hair.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Wearing Earrings</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Wearing_Earrings.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Wearing Hat</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Wearing_Hat.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Wearing Lipstick</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Wearing_Lipstick.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Wearing Necklace</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Wearing_Necklace.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Wearing Necktie</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Wearing_Necktie.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="emotion-item">
+                    <h3>Young</h3>
+                    <video controls>
+                        <source src="videos/Chris_Hemsworth_019/823_Young.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="bibtex">
+        <h2>BibTeX</h2>
+        <div class="content-box">
+            <pre><code>@inproceedings{zhang2023FaceEditTalker,
+  title={FaceEditTalker: 可编辑的面部表情驱动的说话人合成},
+  author={张三 and 李四 and 王五 and 赵六},
+  booktitle={计算机视觉与模式识别会议论文集},
+  pages={1234--1243},
+  year={2023}
+}</code></pre>
+        </div>
+    </section> -->
+
+    <footer>
+        <p>&copy; 2025 Xi'an Key Laboratory of Big Data and Intelligent Vision, Xidian University. All rights reserved.</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
