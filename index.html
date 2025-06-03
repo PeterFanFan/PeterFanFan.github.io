@@ -51,7 +51,52 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 				
 
+<tr onmouseout="faceedittalker_stop()" onmouseover="faceedittalker_start()" >
+  <td style="padding:20px;width:25%;vertical-align:middle">
+<!--     <div class="two" id="gaussianface_image" style="display: inline;"> 
+      <video  width="320" height="180" muted autoplay loop>
+      <source src="lestalker/static/video/video1.mp4" alt="lestalker mp4" width="320" height="170" type="video/mp4">
+      </video>
+    </div> -->
+      <img src='images/faceedittalker/faceedittalker.png' alt="faceedittalker" width="320" height="170">
+    </div>
+    <script type="text/javascript">
+      function emospeaker_start() {
+        document.getElementById('gaussianface_image').style.opacity = "1";
+      }
 
+      function lestalker_stop() {
+        document.getElementById('gaussianface_image').style.opacity = "0";
+      }
+      emospeaker_stop()
+    </script>
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="./emospeaker">
+      <papertitle>[Arxiv 2025] FaceEditTalker: Interactive Talking Head Generation with Facial Attribute Editing </papertitle>
+    </a>
+    <br>
+    <strong>Guanwen Feng</strong>,
+    <strong>Zhiyuan Ma</strong>,
+    <strong>Yunan Li</strong>,
+    <strong>Junwei Jing</strong>,
+    <strong>Jiahao Yang</strong>,
+    <strong>Qiguang Miao</strong>
+    <br>
+        <a href="https://peterfanfan.github.io/FaceEditTalker/">Project</a>  /
+  
+     <a href="https://arxiv.org/pdf/2505.22141">Arxiv</a>  
+  
+<!--     <a href="https://github.com/Psychic-DL/DiffTAD">Code</a> -->
+    <p></p>
+    <p>
+       We propose a novel editable talking head generation method.
+    </p>
+  </td>
+
+
+
+		
           
 
 <tr onmouseout="gaussianface_stop()" onmouseover="gaussianface_start()" >
